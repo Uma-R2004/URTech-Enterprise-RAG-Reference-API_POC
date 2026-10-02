@@ -1,0 +1,30 @@
+## Visual Studio / .NET
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Runtime data
+**/App_Data/
+**/LocalStorage/
+
+## Secrets / local configuration
+.env
+.env.*
+secrets.json
+appsettings.Local.json
+
+## OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+## Front-end generated files
+**/node_modules/
+**/dist/
+**/.angular/
+**/.vite/
+coverage/

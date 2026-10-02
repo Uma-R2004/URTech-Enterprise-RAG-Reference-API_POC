@@ -1,0 +1,64 @@
+@baseUrl = https://localhost:7188
+
+### 1. Health check
+GET {{baseUrl}}/api/health
+Accept: application/json
+
+###
+
+### 2. List documents (fresh local start includes the seeded governance policy)
+GET {{baseUrl}}/api/documents
+Accept: application/json
+
+###
+
+### 3. Ingest text directly
+POST {{baseUrl}}/api/documents/ingest-text
+Content-Type: application/json
+
+{
+  "fileName": "security-policy.txt",
+  "content": "Production credentials must be stored in Azure Key Vault. Privileged access requires manager approval and security validation."
+}
+
+###
+
+### 4. Ask a grounded RAG question
+POST {{baseUrl}}/api/rag/ask
+Content-Type: application/json
+
+{
+  "question": "Who approves privileged access requests?",
+  "topK": 4,
+  "minimumSimilarityScore": 0.02
+}
+
+###
+
+### 5. Ask a second policy question
+POST {{baseUrl}}/api/rag/ask
+Content-Type: application/json
+
+{
+  "question": "Where should production secrets be stored?",
+  "topK": 4,
+  "minimumSimilarityScore": 0.02
+}
+
+###
+
+### 6. Negative grounding test — should not invent unsupported information
+POST {{baseUrl}}/api/rag/ask
+Content-Type: application/json
+
+{
+  "question": "What is the company vacation policy?",
+  "topK": 4,
+  "minimumSimilarityScore": 0.50
+}
+
+###
+
+### 7. Delete example
+# Replace the GUID with a value returned by GET /api/documents.
+# DELETE {{baseUrl}}/api/documents/00000000-0000-0000-0000-000000000000

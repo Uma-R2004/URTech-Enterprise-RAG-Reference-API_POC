@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>URTech-EnterpriseRAG-Reference</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\URTech.EnterpriseRAG.Application\URTech.EnterpriseRAG.Application.csproj" />
+    <ProjectReference Include="..\URTech.EnterpriseRAG.Domain\URTech.EnterpriseRAG.Domain.csproj" />
+    <ProjectReference Include="..\URTech.EnterpriseRAG.Infrastructure\URTech.EnterpriseRAG.Infrastructure.csproj" />
+    <ProjectReference Include="..\URTech.EnterpriseRAG.Persistence\URTech.EnterpriseRAG.Persistence.csproj" />
+    <ProjectReference Include="..\URTech.EnterpriseRAG.Shared\URTech.EnterpriseRAG.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="App_Data\**\*" />
+    <None Remove="App_Data\**\*" />
+  </ItemGroup>
+</Project>

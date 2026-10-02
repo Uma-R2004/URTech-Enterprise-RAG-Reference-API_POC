@@ -1,0 +1,7 @@
+Security and Privileged Access Policy
+
+Privileged access is granted only for an approved business purpose. The requester's manager must approve the business need, and the security team must validate that the requested role is appropriate and follows least privilege.
+
+Production credentials must be stored in Azure Key Vault or another approved enterprise secret store. Credentials must not be stored in source code, documentation, tickets, or public repositories.
+
+Access is reviewed periodically. Access that is no longer required must be removed promptly.

@@ -1,0 +1,17 @@
+/*
+File role: IVectorStore.cs
+Layer: Application
+Purpose: Defines an Application-layer contract so orchestration depends on abstractions rather than concrete infrastructure implementations.
+Business flow: Application service -> interface contract -> Infrastructure/Persistence implementation.
+Design note: This public reference keeps dependencies directed inward so AI/cloud/storage providers can be replaced without changing core use-case logic.
+*/
+
+namespace URTech.EnterpriseRAG.Application.Search;
+
+public interface IVectorStore
+{
+    Task UpsertAsync(VectorRecord record, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<SearchResult>> SearchAsync(float[] queryVector, Guid? documentId, int topK, double minimumScore, CancellationToken cancellationToken = default);
+    Task DeleteDocumentAsync(Guid documentId, CancellationToken cancellationToken = default);
+    int Count { get; }
+}

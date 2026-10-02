@@ -1,0 +1,13 @@
+Enterprise AI Governance Policy
+
+AI solutions must use approved enterprise data sources and apply data minimization, least-privilege access, auditable decision paths, and human oversight for high-impact actions.
+
+Before a generative AI application is promoted to production, the engineering team performs architecture review, security review, privacy review, model and prompt evaluation, and business-owner acceptance testing.
+
+Production secrets must be stored in an approved secret store such as Azure Key Vault. API keys, passwords, connection strings, and tokens must never be committed to source control.
+
+Retrieval-Augmented Generation solutions should ground answers in approved enterprise knowledge sources. Retrieved passages should be preserved as citations so users can verify the evidence supporting an answer.
+
+For privileged access requests, the requester's manager provides business approval and the security team validates the requested level of access before provisioning.
+
+AI incidents are logged, triaged, and reviewed. Corrective actions are tracked through completion and significant incidents receive a post-incident review.

@@ -1,0 +1,32 @@
+<main class="shell">
+  <section class="hero">
+    <p class="eyebrow">URTech Enterprise RAG Reference API</p>
+    <h1>Angular RAG Client</h1>
+    <p>Ask a question against the indexed enterprise knowledge sources and inspect the grounding evidence.</p>
+  </section>
+
+  <section class="card">
+    <label for="question">Question</label>
+    <textarea id="question" [(ngModel)]="question" rows="4"></textarea>
+    <button type="button" (click)="ask()" [disabled]="loading">
+      {{ loading ? 'Searching…' : 'Ask RAG' }}
+    </button>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </section>
+
+  <section class="card" *ngIf="result">
+    <div class="meta">
+      <span>Grounded: {{ result.grounded }}</span>
+      <span>Embedding: {{ result.embeddingProvider }}</span>
+      <span>Answer: {{ result.answerProvider }}</span>
+    </div>
+    <h2>Answer</h2>
+    <p>{{ result.answer }}</p>
+
+    <h2>Sources</h2>
+    <article class="source" *ngFor="let source of result.sources">
+      <strong>Similarity {{ source.similarityScore }}</strong>
+      <p>{{ source.text }}</p>
+    </article>
+  </section>
+</main>

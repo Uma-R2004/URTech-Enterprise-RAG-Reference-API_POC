@@ -1,0 +1,28 @@
+# URTech Enterprise RAG Reference API
+# CI pipeline: restore -> build -> automated tests.
+# No secrets are required for the default Local RAG mode.
+
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET 8 SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+
+- script: dotnet restore URTech.EnterpriseRAG.Reference.sln
+  displayName: 'Restore'
+
+- script: dotnet build URTech.EnterpriseRAG.Reference.sln --configuration $(buildConfiguration) --no-restore
+  displayName: 'Build'
+
+- script: dotnet test URTech.EnterpriseRAG.Reference.sln --configuration $(buildConfiguration) --no-build --logger trx
+  displayName: 'Test'
